@@ -122,6 +122,9 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/stmsy"
+    - label: "GitLab"
+      icon: "fab fa-fw fa-gitlab"
+      url: "https://gitlab.com/stmsy"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/stmsy"
@@ -139,9 +142,9 @@ footer:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/stmsy"
-    # - label: "GitLab"
-    #   icon: "fab fa-fw fa-gitlab"
-    #   url:
+    - label: "GitLab"
+      icon: "fab fa-fw fa-gitlab"
+      url: "https://gitlab.com/stmsy"
     # - label: "Bitbucket"
     #   icon: "fab fa-fw fa-bitbucket"
     #   url:
