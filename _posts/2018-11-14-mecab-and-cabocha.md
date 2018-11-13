@@ -14,12 +14,12 @@ classes: wide
 
 [MeCab](http://taku910.github.io/mecab/) is an open source Japanese Part-Of-Speech tagging engine developed and maintained by Dr. [Taku Kudo](http://chasen.org/~taku/index.html.en).
 
-## Requirements
+### Requirements
 
 1. `g++ 3.4.3` or later
 2. `iconv`
 
-## Install from Source
+### Install from Source
 
 Use the `tar` command to extract `mecab-0.996.tar.gz`.
 
@@ -68,12 +68,12 @@ $ python setup.py install
 
 [CaboCha](http://taku910.github.io/cabocha/) is an open source Japanese depedency parser also developed and maintained by Dr. Kudo.
 
-## Requirements
+### Requirements
 
 1. MeCab 0.993 or later
 2. One of the follwing dictionary for MeCab: `mecab-ipadic`, `mecab-jamandic` and `unidic`
 
-## Install from Source
+### Install from Source
 
 Run the commands below to install the conditional random fields toolkit CRF++ used as dependency for CaboCha.
 
