@@ -6,7 +6,7 @@ tags:
 classes: wide
 ---
 
-## Requirement
+## Prerequisite
 
 If you work with macOS, ```gnu-sed``` should be installed from Homebrew.
 
