@@ -11,13 +11,13 @@ tags:
 classes: wide
 ---
 
-## Prerequisite
+## Requirement
 
-If you work with macOS, ```gnu-sed``` should be installed from Homebrew.
+If you work with macOS, `gnu-sed` should be installed from Homebrew.
 
 ## Concatenate into a Single File
 
-Suppose for simplicity that two CSV files ```file1.csv``` and ```file2.csv``` share the same header as follows:
+Suppose for simplicity that two CSV files `file1.csv` and `file2.csv` share the same header as follows:
 
 ```
 # file1.csv
@@ -50,4 +50,3 @@ foo3,bar3,baz3
 ```
 
 as expected.
-
