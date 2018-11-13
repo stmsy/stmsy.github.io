@@ -1,8 +1,13 @@
 ---
 title: Concatenate Multiple CSV Files
 tags:
+  - UNIX
   - macOS
+  - Linux
   - CSV
+  - awk
+  - sed
+  - gsed
 classes: wide
 ---
 
