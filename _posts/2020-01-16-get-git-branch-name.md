@@ -8,7 +8,7 @@ tags:
 classes: wide
 ---
 
-Due to the complicated naming covention, sometimes it is not easy to remember and type in your current working branch name. The following command let you get the branch name
+Due to the complicated naming covention, sometimes it is not easy to remember and type in your current working branch name. The following command lets you get the branch name
 
 ```bash
 git branch | sed -n -e "s/^\* \(.*\)/\1/p"
