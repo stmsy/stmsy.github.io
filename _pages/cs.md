@@ -3,4 +3,6 @@ title: Computer Science
 permalink: /cs/
 ---
 
-*Under construction*
+# Computer Science
+
+## Natual Language Processing
