@@ -26,3 +26,30 @@ desserts
 >>> print(word[::2])
 パトカー
 ```
+
+## 02. 「パトカー」＋「タクシー」＝「パタトクカシーー」
+
+「```パトカー```」＋「```タクシー```」の文字を先頭から交互に連結して文字列「```パタトクカシーー```」を得よ.
+
+```python
+>>> first, second = "パトカー", "タクシー"
+>>> concated = ["" for _ in range(len(first + second))]
+>>> concated[::2] = list(first)
+>>> concated[1::2] = list(second)
+>>> word = "".join(concated)
+>>> print(word)
+パタトクカシーー
+```
+
+## 03. 円周率
+
+```"Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics."``` という文を単語に分解し, 各単語の（アルファベットの）文字数を先頭から出現順に並べたリストを作成せよ.
+
+```python
+>>> sent = ("Now I need a drink, alcoholic of course, after the heavy lectures "
+>>>         "involving quantum mechanics.")
+>>> words = [word.strip(',.') for word in sent.split(' ')]
+>>> counts = [len(word) for word in words]
+>>> print(counts)
+[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9]
+```
