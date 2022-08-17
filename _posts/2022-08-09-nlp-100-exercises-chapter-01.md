@@ -1,5 +1,5 @@
 ---
-title: Chapter 1 Warm-up
+title: Chapter 1: Warm-up
 tags:
   - Natural Language Processing
   - Japanese
@@ -142,7 +142,7 @@ def gen_sent(x: int, y: str, z: float) -> str:
 
 ```python
 >>> gen_sent(x=12, y="気温", z=22.4)
-'12時の気温は22.4'
+12時の気温は22.4
 ```
 
 ## 08. 暗号文
@@ -155,6 +155,9 @@ def gen_sent(x: int, y: str, z: float) -> str:
 この関数を用い, 英語のメッセージを暗号化・復号化せよ.
 
 ```python
+from typing import List
+
+
 def cipher(sent: str) -> str:
     """Cipher and decipher an English message."""
     ciphered: List[str] = []
@@ -169,9 +172,43 @@ def cipher(sent: str) -> str:
 
 ```python
 >>> cipher("Today is Monday.")
-'Tlwzb rh Mlmwzb.'
+Tlwzb rh Mlmwzb.
 >>> cipher("Tlwzb rh Mlmwzb.")
-'Today is Monday.'
+Today is Monday.
+```
+
+## 09. Typoglycemia
+
+スペースで区切られた単語列に対して, 各単語の先頭と末尾の文字は残し, それ以外の文字の順序をランダムに並び替えるプログラムを作成せよ. ただし, 長さが4以下の単語は並び替えないこととする．適当な英語の文（例えば "I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind ."）を与え, その実行結果を確認せよ.
+
+```python
+import random
+from typing import List
+
+
+def get_typoglycemia(sent: str) -> str:
+    """Return typoglycemia from an English sentence."""
+    shuffled: List[str] = []
+    tokens: List[str] = sent.split(' ')
+    for token in tokens:
+        if len(token) > 4:
+            first: str
+            last: str
+            first, last = token[0], token[-1]
+            sub_token: str = token[1:-1]
+            middle = "".join(random.sample(sub_token, len(sub_token)))
+            shuffled += [first + middle + last]
+        else:
+            shuffled += [token]
+    return " ".join(shuffled)
+```
+
+```python
+>>> sent_orig = ("I couldn't believe that I could actually understand what I was "
+...              "reading : the phenomenal power of the human mind .")
+>>> sent_typoglycemia = get_typoglycemia(sent_orig)
+>>> print(sent_typoglycemia)
+I cold'unt bleeive that I could autllacy ursndneatd what I was rnaeidg : the pemnoanhel peowr of the huamn mind .
 ```
 
 # References
