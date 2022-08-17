@@ -1,5 +1,5 @@
 ---
-title: Chapter 1: Warm-up
+title: Chapter 1 Warm-up
 tags:
   - Natural Language Processing
   - Japanese
