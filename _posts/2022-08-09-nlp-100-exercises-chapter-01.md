@@ -81,7 +81,7 @@ from typing import List, Union
 
 
 def get_n_gram(sent: str, n: int = 2, word_n_gram: bool = True) -> List[Union[str, List[str]]]:
-    """Return a list of word n-grams."""
+    """Return a list of word or string n-grams."""
     words: List[str] = [word.rstrip(',.') for word in sent.split(' ')]
     n_gram: List[Union[str, List[str]]] = []
     if word_n_gram:
