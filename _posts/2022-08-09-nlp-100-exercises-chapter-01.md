@@ -113,7 +113,7 @@ def get_n_gram(sent: str, n: int = 2, word_n_gram: bool = True) -> List[Union[st
 ```
 
 ## 06. 集合
-"paraparaparadise" と "paragraph" に含まれる文字 bi-gram の集合を, それぞれ, X と ```Y``` として求め, ```X``` と ```Y``` の和集合, 積集合, 差集合を求めよ. さらに, 'se' という bi-gram が X および Y に含まれるかどうかを調べよ.
+"paraparaparadise" と "paragraph" に含まれる文字 bi-gram の集合を, それぞれ, ```X``` と ```Y``` として求め, ```X``` と ```Y``` の和集合, 積集合, 差集合を求めよ. さらに, 'se' という bi-gram が ```X``` および ```Y``` に含まれるかどうかを調べよ.
 
 ```python
 >>> X = set(get_n_gram("paraparaparadise", word_n_gram=False))
