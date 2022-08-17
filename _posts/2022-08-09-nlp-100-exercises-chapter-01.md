@@ -9,7 +9,7 @@ classes: wide
 
 ## 00. 文字列の逆順
 
-文字列 ```"stressed"``` の文字を逆に（末尾から先頭に向かって）並べた文字列を得よ.
+文字列 "stressed" の文字を逆に（末尾から先頭に向かって）並べた文字列を得よ.
 
 ```python
 >>> word = "stressed"
@@ -19,7 +19,7 @@ desserts
 
 ## 01. 「パタトクカシーー」
 
-```"パタトクカシーー"```という文字列の1, 3, 5, 7文字目を取り出して連結した文字列を得よ.
+"パタトクカシーー"という文字列の1, 3, 5, 7文字目を取り出して連結した文字列を得よ.
 
 ```python
 >>> word = "パタトクカシーー"
@@ -29,8 +29,7 @@ desserts
 
 ## 02. 「パトカー」＋「タクシー」＝「パタトクカシーー」
 
-<!-- ```"パトカー"```＋```"タクシー"```の文字を先頭から交互に連結して文字列```"パタトクカシーー"```を得よ. -->
-```"パタトクカシーー"```
+"パトカー"＋"タクシー"の文字を先頭から交互に連結して文字列"パタトクカシーー"を得よ.
 
 ```python
 >>> first, second = "パトカー", "タクシー"
@@ -44,7 +43,7 @@ desserts
 
 ## 03. 円周率
 
-```"Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics."``` という文を単語に分解し, 各単語の（アルファベットの）文字数を先頭から出現順に並べたリストを作成せよ.
+"Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics." という文を単語に分解し, 各単語の（アルファベットの）文字数を先頭から出現順に並べたリストを作成せよ.
 
 ```python
 >>> sent = ("Now I need a drink, alcoholic of course, after the heavy lectures "
@@ -57,7 +56,7 @@ desserts
 
 ## 04. 元素記号
 
-```"Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can."``` という文を単語に分解し, 1, 5, 6, 7, 8, 9, 15, 16, 19番目の単語は先頭の1文字, それ以外の単語は先頭に2文字を取り出し, 取り出した文字列から単語の位置（先頭から何番目の単語か）への連想配列（辞書型もしくはマップ型）を作成せよ.
+"Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can." という文を単語に分解し, 1, 5, 6, 7, 8, 9, 15, 16, 19番目の単語は先頭の1文字, それ以外の単語は先頭に2文字を取り出し, 取り出した文字列から単語の位置（先頭から何番目の単語か）への連想配列（辞書型もしくはマップ型）を作成せよ.
 
 ```python
 >>> sent = ("Hi He Lied Because Boron Could Not Oxidize Fluorine. "
@@ -75,7 +74,7 @@ desserts
 
 ## 05. n-gram
 
-与えられたシーケンス（文字列やリストなど）から n-gram を作る関数を作成せよ. この関数を用い, ```"I am an NLPer"``` という文から単語 bi-gram, 文字 bi-gram を得よ.
+与えられたシーケンス（文字列やリストなど）から n-gram を作る関数を作成せよ. この関数を用い, "I am an NLPer" という文から単語 bi-gram, 文字 bi-gram を得よ.
 
 ```python
 from typing import List, Union
