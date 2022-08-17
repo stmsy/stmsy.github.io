@@ -82,18 +82,18 @@ from typing import List, Union
 
 def get_n_gram(sent: str, n: int = 2, word_n_gram: bool = True) -> List[Union[str, List[str]]]:
     """Return a list of word n-grams."""
-    words = [word.rstrip(',.') for word in sent.split(' ')]
-    n_gram = []
+    words: List[str] = [word.rstrip(',.') for word in sent.split(' ')]
+    n_gram: List[Union[str, List[str]]] = []
     if word_n_gram:
-        num_words = len(words)
+        num_words: int = len(words)
         if num_words <= n:
             n_gram += [words]
         else:
             for i in range(num_words-n+1):
                 n_gram += [words[i:i+n]]
     else:
-        string = "".join(words)
-        len_string = len(string)
+        string: str = "".join(words)
+        len_string: int = len(string)
         if len_string <= n:
             n_gram += [[string]]
         else:
