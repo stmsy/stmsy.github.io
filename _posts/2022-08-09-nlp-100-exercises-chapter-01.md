@@ -130,6 +130,21 @@ True
 False
 ```
 
+## 07. テンプレートによる文生成
+
+引数 ```x```, ```y```, ```z``` を受け取り「```x``` 時の ```y``` は ```z```」という文字列を返す関数を実装せよ. さらに, ```x=12```, ```y="気温"```, ```z=22.4``` として，実行結果を確認せよ.
+
+```python
+def gen_sent(x: int, y: str, z: float) -> str:
+    """Generate a simple template sentence."""
+    return f"{x}時の{y}は{z}"
+```
+
+```python
+>>> gen_sent(x=12, y="気温", z=22.4)
+'12時の気温は22.4'
+```
+
 # References
 1. Okazaki, N. (2015). *言語処理100本ノック 2015* [Natural Language Processing 100 Exercises 2015]. Retrieved from http://www.cl.ecei.tohoku.ac.jp/nlp100/
 2. Okazaki, N. (2020). *言語処理100本ノック 2020* [Natural Language Processing 100 Exercises 2020]. Retrieved from https://nlp100.github.io/ja/
