@@ -145,6 +145,35 @@ def gen_sent(x: int, y: str, z: float) -> str:
 '12時の気温は22.4'
 ```
 
+## 08. 暗号文
+
+与えられた文字列の各文字を, 以下の仕様で変換する関数 ```cipher``` を実装せよ.
+
+- 英小文字ならば（219 - 文字コード）の文字に置換
+- その他の文字はそのまま出力
+
+この関数を用い, 英語のメッセージを暗号化・復号化せよ.
+
+```python
+def cipher(sent: str) -> str:
+    """Cipher and decipher an English message."""
+    ciphered: List[str] = []
+    chars: List[str] = list(sent)
+    for char in chars:
+        if char.islower():
+            ciphered += [chr(219 - ord(char))]
+        else:
+            ciphered += [char]
+    return "".join(ciphered)
+```
+
+```python
+>>> cipher("Today is Monday.")
+'Tlwzb rh Mlmwzb.'
+>>> cipher("Tlwzb rh Mlmwzb.")
+'Today is Monday.'
+```
+
 # References
 1. Okazaki, N. (2015). *言語処理100本ノック 2015* [Natural Language Processing 100 Exercises 2015]. Retrieved from http://www.cl.ecei.tohoku.ac.jp/nlp100/
 2. Okazaki, N. (2020). *言語処理100本ノック 2020* [Natural Language Processing 100 Exercises 2020]. Retrieved from https://nlp100.github.io/ja/
