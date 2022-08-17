@@ -72,6 +72,46 @@ desserts
 {'H': 1, 'He': 2, 'Li': 3, 'Be': 4, 'B': 5, 'C': 6, 'N': 7, 'O': 8, 'F': 9, 'Ne': 10, 'Na': 11, 'Mi': 12, 'Al': 13, 'Si': 14, 'P': 15, 'S': 16, 'Cl': 17, 'Ar': 18, 'K': 19, 'Ca': 20}
 ```
 
+## 05. n-gram
+
+与えられたシーケンス（文字列やリストなど）から n-gram を作る関数を作成せよ. この関数を用い, ```"I am an NLPer"``` という文から単語 bi-gram, 文字 bi-gram を得よ.
+
+```python
+from typing import List, Union
+
+
+def get_n_gram(sent: str, n: int = 2, word_n_gram: bool = True) -> List[Union[str, List[str]]]:
+    """Return a list of word n-grams."""
+    words = [word.rstrip(',.') for word in sent.split(' ')]
+    n_gram = []
+    if word_n_gram:
+        num_words = len(words)
+        if num_words <= n:
+            n_gram += [words]
+        else:
+            for i in range(num_words-n+1):
+                n_gram += [words[i:i+n]]
+    else:
+        string = "".join(words)
+        len_string = len(string)
+        if len_string <= n:
+            n_gram += [[string]]
+        else:
+            for i in range(len_string-n+1):
+                n_gram += [string[i:i+n]]
+    return n_gram
+```
+
+```python
+>>> sent = "I am an NLPer"
+>>> word_bi_gram = get_n_gram(sent)
+>>> print(word_bi_gram)
+[['I', 'am'], ['am', 'an'], ['an', 'NLPer']]
+>>> str_bi_gram = get_n_gram(sent, n=2, word_n_gram=False)
+>>> print(str_bi_gram)
+['Ia', 'am', 'ma', 'an', 'nN', 'NL', 'LP', 'Pe', 'er']
+```
+
 # References
 
 1. Okazaki, N. (2015). *言語処理100本ノック 2015* [Natural Language Processing 100 Exercises 2015]. Retrieved from http://www.cl.ecei.tohoku.ac.jp/nlp100/
