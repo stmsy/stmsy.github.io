@@ -112,7 +112,24 @@ def get_n_gram(sent: str, n: int = 2, word_n_gram: bool = True) -> List[Union[st
 ['Ia', 'am', 'ma', 'an', 'nN', 'NL', 'LP', 'Pe', 'er']
 ```
 
-# References
+## 06. 集合
+"paraparaparadise" と "paragraph" に含まれる文字 bi-gram の集合を, それぞれ, X と ```Y``` として求め, ```X``` と ```Y``` の和集合, 積集合, 差集合を求めよ. さらに, 'se' という bi-gram が X および Y に含まれるかどうかを調べよ.
 
+```python
+>>> X = set(get_n_gram("paraparaparadise", word_n_gram=False))
+>>> Y = set(get_n_gram("paragraph", word_n_gram=False))
+>>> X.union(Y)
+{'ad', 'ag', 'ap', 'ar', 'di', 'gr', 'is', 'pa', 'ph', 'ra', 'se'}
+>>> X.intersection(Y)
+{'ap', 'ar', 'pa', 'ra'}
+>>> X.difference(Y)
+{'ad', 'di', 'is', 'se'}
+>>> 'se' in X
+True
+>>> 'se' in Y
+False
+```
+
+# References
 1. Okazaki, N. (2015). *言語処理100本ノック 2015* [Natural Language Processing 100 Exercises 2015]. Retrieved from http://www.cl.ecei.tohoku.ac.jp/nlp100/
 2. Okazaki, N. (2020). *言語処理100本ノック 2020* [Natural Language Processing 100 Exercises 2020]. Retrieved from https://nlp100.github.io/ja/
