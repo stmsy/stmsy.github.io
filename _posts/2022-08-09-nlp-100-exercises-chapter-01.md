@@ -11,7 +11,7 @@ classes: wide
 
 文字列 "stressed" の文字を逆に（末尾から先頭に向かって）並べた文字列を得よ.
 
-```python
+```shell
 >>> word = "stressed"
 >>> print(word[::-1])
 desserts
@@ -21,7 +21,7 @@ desserts
 
 "パタトクカシーー"という文字列の1, 3, 5, 7文字目を取り出して連結した文字列を得よ.
 
-```python
+```shell
 >>> word = "パタトクカシーー"
 >>> print(word[::2])
 パトカー
@@ -31,7 +31,7 @@ desserts
 
 "パトカー"＋"タクシー"の文字を先頭から交互に連結して文字列"パタトクカシーー"を得よ.
 
-```python
+```shell
 >>> first, second = "パトカー", "タクシー"
 >>> concated = ["" for _ in range(len(first + second))]
 >>> concated[::2] = list(first)
@@ -45,7 +45,7 @@ desserts
 
 "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics." という文を単語に分解し, 各単語の（アルファベットの）文字数を先頭から出現順に並べたリストを作成せよ.
 
-```python
+```shell
 >>> sent = ("Now I need a drink, alcoholic of course, after the heavy lectures "
 ...         "involving quantum mechanics.")
 >>> words = [word.rstrip(',.') for word in sent.split(' ')]
@@ -58,7 +58,7 @@ desserts
 
 "Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can." という文を単語に分解し, 1, 5, 6, 7, 8, 9, 15, 16, 19番目の単語は先頭の1文字, それ以外の単語は先頭に2文字を取り出し, 取り出した文字列から単語の位置（先頭から何番目の単語か）への連想配列（辞書型もしくはマップ型）を作成せよ.
 
-```python
+```shell
 >>> sent = ("Hi He Lied Because Boron Could Not Oxidize Fluorine. "
 ...         "New Nations Might Also Sign Peace Security Clause. Arthur King Can.")
 >>> elems = [word.rstrip(',.') for word in sent.split(' ')]
@@ -102,7 +102,7 @@ def get_n_gram(sent: str, n: int = 2, word_n_gram: bool = True) -> List[Union[st
     return n_gram
 ```
 
-```python
+```shell
 >>> sent = "I am an NLPer"
 >>> word_bi_gram = get_n_gram(sent)
 >>> print(word_bi_gram)
@@ -115,7 +115,7 @@ def get_n_gram(sent: str, n: int = 2, word_n_gram: bool = True) -> List[Union[st
 ## 06. 集合
 "paraparaparadise" と "paragraph" に含まれる文字 bi-gram の集合を, それぞれ, ```X``` と ```Y``` として求め, ```X``` と ```Y``` の和集合, 積集合, 差集合を求めよ. さらに, 'se' という bi-gram が ```X``` および ```Y``` に含まれるかどうかを調べよ.
 
-```python
+```shell
 >>> X = set(get_n_gram("paraparaparadise", word_n_gram=False))
 >>> Y = set(get_n_gram("paragraph", word_n_gram=False))
 >>> X.union(Y)
@@ -140,7 +140,7 @@ def gen_sent(x: int, y: str, z: float) -> str:
     return f"{x}時の{y}は{z}"
 ```
 
-```python
+```shell
 >>> gen_sent(x=12, y="気温", z=22.4)
 12時の気温は22.4
 ```
@@ -170,7 +170,7 @@ def cipher(sent: str) -> str:
     return "".join(ciphered)
 ```
 
-```python
+```shell
 >>> cipher("Today is Monday.")
 Tlwzb rh Mlmwzb.
 >>> cipher("Tlwzb rh Mlmwzb.")
@@ -203,7 +203,7 @@ def get_typoglycemia(sent: str) -> str:
     return " ".join(shuffled)
 ```
 
-```python
+```shell
 >>> sent_orig = ("I couldn't believe that I could actually understand what I was "
 ...              "reading : the phenomenal power of the human mind .")
 >>> sent_typoglycemia = get_typoglycemia(sent_orig)
