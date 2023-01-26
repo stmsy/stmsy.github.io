@@ -186,17 +186,18 @@ import random
 from typing import List
 
 
-def get_typoglycemia(sent: str) -> str:
-    """Return typoglycemia from an English sentence."""
+def get_typoglycemia(text: str) -> str:
+    """Return typoglycemia from an English text."""
     shuffled: List[str] = []
-    tokens: List[str] = sent.split(' ')
+    tokens: List[str] = text.split(' ')
+    first: str
+    last: str
+    substring: str
     for token in tokens:
         if len(token) > 4:
-            first: str
-            last: str
             first, last = token[0], token[-1]
-            sub_token: str = token[1:-1]
-            middle = "".join(random.sample(sub_token, len(sub_token)))
+            substring = token[1:-1]
+            middle = "".join(random.sample(substring, len(substring)))
             shuffled += [first + middle + last]
         else:
             shuffled += [token]
@@ -204,10 +205,10 @@ def get_typoglycemia(sent: str) -> str:
 ```
 
 ```shell
->>> sent_orig = ("I couldn't believe that I could actually understand what I was "
+>>> text_orig = ("I couldn't believe that I could actually understand what I was "
 ...              "reading : the phenomenal power of the human mind .")
->>> sent_typoglycemia = get_typoglycemia(sent_orig)
->>> print(sent_typoglycemia)
+>>> text_typoglycemia = get_typoglycemia(text_orig)
+>>> print(text_typoglycemia)
 I cold'unt bleeive that I could autllacy ursndneatd what I was rnaeidg : the pemnoanhel peowr of the huamn mind .
 ```
 
