@@ -4,4 +4,7 @@ permalink: /travel/
 classes: wide
 ---
 
-*Under construction*
+## Kyoto
+
+[Fall 2022](https://stmsy.github.io/kyoto-fall-2022/)
+
