@@ -4,6 +4,8 @@ main:
     url: /about/
   - title: "Math"
     url: /math/
+  - title: "Statistics"
+    url: /stats/
   - title: "Computer Science"
     url: /cs/
   - title: "Travel"
