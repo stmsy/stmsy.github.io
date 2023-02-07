@@ -1,6 +1,7 @@
 ---
 title: Reading
 permalink: /reading/
+classes: wide
 ---
 
 ## Reading Lists

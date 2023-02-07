@@ -1,6 +1,7 @@
 ---
 title: Statistics
 permalink: /stats/
+classes: wide
 ---
 
 ## Mathematical Statistics
