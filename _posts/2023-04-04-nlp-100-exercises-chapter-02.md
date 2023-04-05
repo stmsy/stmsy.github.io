@@ -62,7 +62,7 @@ for i in 1 2; do cut -f $i popular-names.txt 1> col$i.txt; done
 
 ## 13. ```col1.txt``` と ```col2.txt``` をマージ
 
-[```12```](#12.-1列目を-<code>col1.txt<%2Fcode>-に，2列目を-<code>col2.txt<%2Fcode>-に保存) で作った ```col1.txt``` と ```col2.txt``` を結合し, 元のファイルの1列目と2列目をタブ区切りで並べたテキストファイルを作成せよ. 確認には ```paste``` コマンドを用いよ.
+[```12```](https://stmsy.github.io/nlp-100-exercises-chapter-02/#12-1%E5%88%97%E7%9B%AE%E3%82%92-col1txt-%E3%81%AB2%E5%88%97%E7%9B%AE%E3%82%92-col2txt-%E3%81%AB%E4%BF%9D%E5%AD%98) で作った ```col1.txt``` と ```col2.txt``` を結合し, 元のファイルの1列目と2列目をタブ区切りで並べたテキストファイルを作成せよ. 確認には ```paste``` コマンドを用いよ.
 
 ```shell
 >>> paste col1.txt col2.txt 1> pasted.txt
