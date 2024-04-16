@@ -1,5 +1,5 @@
 ---
-title: Chapter 2 UNIX commands
+title: Chapter 2 UNIX Commands
 tags:
   - Natural Language Processing
   - Japanese
