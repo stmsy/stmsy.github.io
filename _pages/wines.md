@@ -1,6 +1,6 @@
 ---
-title: Wine
-permalink: /wine/
+title: Wines
+permalink: /wines/
 classes: wide
 ---
 

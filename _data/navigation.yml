@@ -10,7 +10,7 @@ main:
     url: /cs/
   - title: "Travel"
     url: /travel/
-  - title: "Wine"
-    url: /wine/
+  - title: "Wines"
+    url: /wines/
   - title: "Tags"
     url: /tags/
