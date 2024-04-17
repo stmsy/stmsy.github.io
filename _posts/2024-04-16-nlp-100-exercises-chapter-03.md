@@ -95,8 +95,41 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 ## 23. セクション構造
 記事中に含まれるセクション名とそのレベル（例えば "== セクション名 ==" なら1）を表示せよ．
 
+```shell
+>>> PATTERN_FOR_SECTIONS = r'(={2,})\s?(.*?)\s?={2,}'
+>>> for line in splitted_text_uk:
+>>>     m = re.search(PATTERN_FOR_SECTIONS, line)
+>>>     if m:
+>>>         section_level = len(m.group(1)) - 1
+>>>         section_name = m.group(2)
+>>>         print(section_name, section_level, sep='\t')
+国名	1
+歴史	1
+地理	1
+気候	2
+政治	1
+...
+```
+
 ## 24. ファイル参照の抽出
 記事から参照されているメディアファイルをすべて抜き出せ．
+
+```shell
+PATTERN_FOR_MEDIA_FILES = r'.*(ファイル|File):(.*?)(\|.*?)'
+media_files = []
+for line in splitted_text_uk:
+    m = re.search(PATTERN_FOR_MEDIA_FILES, line)
+    if m:
+        media_file = m.group(2)
+        media_files.append(media_file)
+pprint(media_files)
+['Royal Coat of Arms of the United Kingdom.svg',
+ 'Battle of Waterloo 1815.PNG',
+ 'The British Empire.png',
+ 'Uk topo en.jpg',
+ 'BenNevis2005.jpg',
+...
+```
 
 ## 25. テンプレートの抽出
 記事中に含まれる「基礎情報」テンプレートのフィールド名と値を抽出し，辞書オブジェクトとして格納せよ．
