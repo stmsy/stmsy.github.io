@@ -14,7 +14,7 @@ classes: wide
 行数をカウントせよ. 確認には ```wc``` コマンドを用いよ.
 
 ```shell
->>> wc -l popular-names.txt
+$ wc -l popular-names.txt
       2780 popular-names.txt
 ```
 
@@ -23,7 +23,7 @@ classes: wide
 タブ1文字につきスペース1文字に置換せよ. 確認には ```sed``` コマンド, ```tr``` コマンド, もしくは ```expand``` コマンドを用いよ.
 
 ```shell
->>>  sed -e "s/\t/ /g" popular-names.txt
+$  sed -e "s/\t/ /g" popular-names.txt
 Mary F 7065 1880
 Anna F 2604 1880
 Emma F 2003 1880
@@ -38,7 +38,7 @@ Sarah F 1288 1880
 ```
 
 ```shell
->>> tr "\t" " " 0< popular-names.txt
+$ tr "\t" " " 0< popular-names.txt
 Mary F 7065 1880
 Anna F 2604 1880
 Emma F 2003 1880
@@ -65,7 +65,7 @@ for i in 1 2; do cut -f $i popular-names.txt 1> col$i.txt; done
 [```12```](https://stmsy.github.io/nlp-100-exercises-chapter-02/#12-1%E5%88%97%E7%9B%AE%E3%82%92-col1txt-%E3%81%AB2%E5%88%97%E7%9B%AE%E3%82%92-col2txt-%E3%81%AB%E4%BF%9D%E5%AD%98) で作った ```col1.txt``` と ```col2.txt``` を結合し, 元のファイルの1列目と2列目をタブ区切りで並べたテキストファイルを作成せよ. 確認には ```paste``` コマンドを用いよ.
 
 ```shell
->>> paste col1.txt col2.txt 1> pasted.txt
+$ paste col1.txt col2.txt 1> pasted.txt
 ```
 
 ## 14. 先頭から ```N``` 行を出力
@@ -73,7 +73,7 @@ for i in 1 2; do cut -f $i popular-names.txt 1> col$i.txt; done
 自然数 N をコマンドライン引数などの手段で受け取り, 入力のうち先頭の N 行だけを表示せよ. 確認には ```head``` コマンドを用いよ.
 
 ```shell
->>> N=5; head -n $N popular-names.txt
+$ N=5; head -n $N popular-names.txt
 Mary    F       7065    1880
 Anna    F       2604    1880
 Emma    F       2003    1880
@@ -86,7 +86,7 @@ Minnie  F       1746    1880
 自然数 N をコマンドライン引数などの手段で受け取り, 入力のうち末尾の N 行だけを表示せよ. 確認には ```tail``` コマンドを用いよ.
 
 ```shell
->>> N=5; tail -n $N popular-names.txt
+$ N=5; tail -n $N popular-names.txt
 Benjamin        M       13381   2018
 Elijah  M       12886   2018
 Lucas   M       12585   2018
@@ -99,7 +99,7 @@ Logan   M       12352   2018
 自然数 N をコマンドライン引数などの手段で受け取り, 入力のファイルを行単位で N 分割せよ. 同様の処理を ```split``` コマンドで実現せよ.
 
 ```shell
->>> N=5; split -l $N popular-names.txt
+$ N=5; split -l $N popular-names.txt
 ```
 
 ## 17. 1列目の文字列の異なり
@@ -107,7 +107,7 @@ Logan   M       12352   2018
 1列目の文字列の種類（異なる文字列の集合）を求めよ. 確認には ```sort```, ```uniq``` コマンドを用いよ.
 
 ```shell
->>> sort col1.txt | uniq
+$ sort col1.txt | uniq
 Abigail
 Aiden
 Alexander
@@ -126,7 +126,7 @@ Angela
 各行を3コラム目の数値の逆順で整列せよ（注意: 各行の内容は変更せずに並び替えよ）. 確認には ```sort``` コマンドを用いよ（この問題はコマンドで実行した時の結果と合わなくてもよい）.
 
 ```shell
->>> sort -k 3rn -t $'\t' popular-names.txt
+$ sort -k 3rn -t $'\t' popular-names.txt
 Linda   F       99689   1947
 Linda   F       96211   1948
 James   M       94757   1947
@@ -145,7 +145,7 @@ Michael M       88528   1954
 各行の1列目の文字列の出現頻度を求め, その高い順に並べて表示せよ. 確認には ```cut```, ```uniq```, ```sort``` コマンドを用いよ.
 
 ```shell
->>> cut -f 1 popular-names.txt | sort | uniq -c | sort -rn
+$ cut -f 1 popular-names.txt | sort | uniq -c | sort -rn
  118 James
  111 William
  108 Robert
