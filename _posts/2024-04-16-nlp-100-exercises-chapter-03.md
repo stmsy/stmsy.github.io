@@ -20,12 +20,12 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 
 ```python
 >>> from gzip import GzipFile
->>> import json
 >>> from io import BytesIO
+>>> import json
 >>> import requests
->>> WIKIPEDIA_URL = 'http://www.cl.ecei.tohoku.ac.jp/nlp100/data/jawiki-country.json.gz'
+>>> GZIPPED_JSON_FILE_URL = 'http://www.cl.ecei.tohoku.ac.jp/nlp100/data/jawiki-country.json.gz'
 >>> UK = 'イギリス'
->>> response = requests.get(WIKIPEDIA_URL)
+>>> response = requests.get(GZIPPED_JSON_FILE_URL)
 >>> buffered = BytesIO(response.content)
 >>> with GzipFile(fileobj=buffered) as gf:
 >>>     articles = list(map(lambda x: json.loads(x.decode('utf-8')), gf.readlines()))
