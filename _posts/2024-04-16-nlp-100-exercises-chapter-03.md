@@ -115,14 +115,14 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 記事から参照されているメディアファイルをすべて抜き出せ．
 
 ```shell
-PATTERN_FOR_MEDIA_FILES = r'.*(ファイル|File):(.*?)(\|.*?)'
-media_files = []
-for line in splitted_text_uk:
-    m = re.search(PATTERN_FOR_MEDIA_FILES, line)
-    if m:
-        media_file = m.group(2)
-        media_files.append(media_file)
-pprint(media_files)
+>>> PATTERN_FOR_MEDIA_FILES = r'.*(ファイル|File):(.*?)(\|.*?)'
+>>> media_files = []
+>>> for line in splitted_text_uk:
+>>>     m = re.search(PATTERN_FOR_MEDIA_FILES, line)
+>>>     if m:
+>>>         media_file = m.group(2)
+>>>         media_files.append(media_file)
+>>> pprint(media_files)
 ['Royal Coat of Arms of the United Kingdom.svg',
  'Battle of Waterloo 1815.PNG',
  'The British Empire.png',
