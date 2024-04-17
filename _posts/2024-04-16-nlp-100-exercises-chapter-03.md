@@ -18,6 +18,24 @@ Wikipedia の記事を以下のフォーマットで書き出したファイル 
 ## 20. JSONデータの読み込み
 Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関する記事本文を表示せよ．問題21-29 では，ここで抽出した記事本文に対して実行せよ．
 
+```python
+>>> from gzip import GzipFile
+>>> import json
+>>> from io import BytesIO
+>>> import requests
+>>> WIKIPEDIA_URL = 'http://www.cl.ecei.tohoku.ac.jp/nlp100/data/jawiki-country.json.gz'
+>>> UK = 'イギリス'
+>>> response = requests.get(WIKIPEDIA_URL)
+>>> buffered = BytesIO(response.content)
+>>> with GzipFile(fileobj=buffered) as gf:
+>>>     articles = list(map(lambda x: json.loads(x.decode('utf-8')), gf.readlines()))
+>>> wikipedia_uk = {}
+>>> for article in articles:
+>>>     if article['title'] == UK:
+>>>         wikipedia_uk = article
+>>> print(wikipedia_uk)
+```
+
 ## 21. カテゴリ名を含む行を抽出
 記事中でカテゴリ名を宣言している行を抽出せよ．
 
