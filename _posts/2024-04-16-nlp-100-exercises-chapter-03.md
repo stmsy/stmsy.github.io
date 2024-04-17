@@ -18,10 +18,11 @@ Wikipedia の記事を以下のフォーマットで書き出したファイル 
 ## 20. JSONデータの読み込み
 Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関する記事本文を表示せよ．問題21-29 では，ここで抽出した記事本文に対して実行せよ．
 
-```python
+```shell
 >>> from gzip import GzipFile
 >>> from io import BytesIO
 >>> import json
+>>> from pprint import pprint
 >>> import requests
 >>> GZIPPED_JSON_FILE_URL = 'http://www.cl.ecei.tohoku.ac.jp/nlp100/data/jawiki-country.json.gz'
 >>> UK = 'イギリス'
@@ -33,7 +34,27 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 >>> for article in articles:
 >>>     if article['title'] == UK:
 >>>         wikipedia_uk = article
->>> print(wikipedia_uk)
+>>> pprint(wikipedia_uk)
+{'text': '{{redirect|UK}}\n'
+         '{{基礎情報 国\n'
+         '|略名 = イギリス\n'
+         '|日本語国名 = グレートブリテン及び北アイルランド連合王国\n'
+         '|公式国名 = {{lang|en|United Kingdom of Great Britain and Northern '
+         'Ireland}}<ref>英語以外での正式国名:<br/>\n'
+         '*{{lang|gd|An Rìoghachd Aonaichte na Breatainn Mhòr agus Eirinn mu '
+         'Thuath}}（[[スコットランド・ゲール語]]）<br/>\n'
+         '*{{lang|cy|Teyrnas Gyfunol Prydain Fawr a Gogledd '
+         'Iwerddon}}（[[ウェールズ語]]）<br/>\n'
+         '*{{lang|ga|Ríocht Aontaithe na Breataine Móire agus Tuaisceart na '
+         'hÉireann}}（[[アイルランド語]]）<br/>\n'
+         '*{{lang|kw|An Rywvaneth Unys a Vreten Veur hag Iwerdhon '
+         'Glédh}}（[[コーンウォール語]]）<br/>\n'
+         '*{{lang|sco|Unitit Kinrick o Great Breetain an Northren '
+         'Ireland}}（[[スコットランド語]]）<br/>\n'
+         '**{{lang|sco|Claught Kängrick o Docht Brätain an Norlin '
+         'Airlann}}、{{lang|sco|Unitet Kängdom o Great Brittain an Norlin '
+         'Airlann}}（アルスター・スコットランド語）</ref>\n'
+...
 ```
 
 ## 21. カテゴリ名を含む行を抽出
