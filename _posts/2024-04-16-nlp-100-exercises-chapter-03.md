@@ -64,7 +64,7 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 ```shell
 >>> CATEGORY = 'Category'
 >>> splitted_text_uk = raw_text_uk.replace('\n\n', '\n').split('\n')
->>> category_rows = [row for row in splitted_text_uk if CATEGORY in row]
+>>> category_rows = [line for line in splitted_text_uk if CATEGORY in row]
 >>> pprint(category_rows)
 ['[[Category:イギリス|*]]',
  '[[Category:英連邦王国|*]]',
