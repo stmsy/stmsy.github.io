@@ -7,7 +7,7 @@ tags:
 classes: wide
 ---
 
-Wikipedia の記事を以下のフォーマットで書き出したファイル [jawiki-country.json.gz](https://www.cl.ecei.tohoku.ac.jp/nlp100/data/jawiki-country.json.gz) がある．
+Wikipedia の記事を以下のフォーマットで書き出したファイル [`jawiki-country.json.gz`](https://www.cl.ecei.tohoku.ac.jp/nlp100/data/jawiki-country.json.gz) がある．
 
 - 1行に1記事の情報が JSON 形式で格納される
 - 各行には記事名が "title" キーに，記事本文が "text" キーの辞書オブジェクトに格納され，そのオブジェクトが JSON 形式で書き出される
@@ -34,6 +34,8 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 >>> for article in articles:
 >>>     if article['title'] == UK:
 >>>         wikipedia_uk = article
+
+
 >>> pprint(wikipedia_uk)
 {'text': '{{redirect|UK}}\n'
          '{{基礎情報 国\n'
