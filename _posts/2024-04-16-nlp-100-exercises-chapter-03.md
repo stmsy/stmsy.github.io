@@ -61,8 +61,36 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 ## 21. カテゴリ名を含む行を抽出
 記事中でカテゴリ名を宣言している行を抽出せよ．
 
+```shell
+>>> CATEGORY = 'Category'
+>>> splitted_text_uk = raw_text_uk.replace('\n\n', '\n').split('\n')
+>>> category_rows = [row for row in splitted_text_uk if CATEGORY in row]
+>>> pprint(category_rows)
+['[[Category:イギリス|*]]',
+ '[[Category:英連邦王国|*]]',
+ '[[Category:G8加盟国]]',
+ '[[Category:欧州連合加盟国]]',
+ '[[Category:海洋国家]]',
+ '[[Category:君主国]]',
+ '[[Category:島国|くれいとふりてん]]',
+ '[[Category:1801年に設立された州・地域]]']
+```
+
 ## 22. カテゴリ名の抽出
 記事のカテゴリ名を（行単位ではなく名前で）抽出せよ．
+
+```shell
+>>> import re
+>>> PATTERN_FOR_CATEGORY = r'\[\[Category:(.*?)[\|\]].*?'
+>>> category_names = []
+>>> for category_row in category_rows:
+>>>     m = re.search(PATTERN_FOR_CATEGORY, category_row)
+>>>     if m:
+>>>         category_name = m.group(1)
+>>>         category_names.append(category_name)
+>>> pprint(category_names)
+['イギリス', '英連邦王国', 'G8加盟国', '欧州連合加盟国', '海洋国家', '君主国', '島国', '1801年に設立された州・地域']
+```
 
 ## 23. セクション構造
 記事中に含まれるセクション名とそのレベル（例えば "== セクション名 ==" なら1）を表示せよ．
