@@ -30,13 +30,12 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 >>> buffered = BytesIO(response.content)
 >>> with GzipFile(fileobj=buffered) as gf:
 >>>     articles = list(map(lambda x: json.loads(x.decode('utf-8')), gf.readlines()))
->>> wikipedia_uk = {}
+>>> wikipedia = {}
 >>> for article in articles:
->>>     if article['title'] == UK:
->>>         wikipedia_uk = article
-
-
->>> pprint(wikipedia_uk)
+>>>     title = article['title']
+>>>     text = article['text']
+>>>     wikipedia[title] = text
+>>> pprint(wikipedia[UK])
 {'text': '{{redirect|UK}}\n'
          '{{基礎情報 国\n'
          '|略名 = イギリス\n'
