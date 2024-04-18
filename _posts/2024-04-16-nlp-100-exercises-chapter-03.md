@@ -188,7 +188,6 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 ...             key, value = m.group(1), m.group(2)
 ...             basic_info["公式国名"] = {key: value}
 ...     elif line[:3] == "*{{":
-...         # Capture the country name in other languages
 ...         m = re.search(PATTERN_FOR_BRACES, line)
 ...         key, value = m.group(1), m.group(2)
 ...         if key != "sco":
@@ -196,7 +195,6 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 ...         else:
 ...             basic_info["公式国名"].update({key: [value]})
 ...     elif line[:3] == "**{":
-...         # Capture another two country names in Scottish
 ...         for substr in line.split("、"):
 ...             m = re.search(PATTERN_FOR_BRACES, substr)
 ...             key, value = m.group(1), m.group(2)
