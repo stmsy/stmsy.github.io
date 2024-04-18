@@ -146,14 +146,14 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 設問25-28の処理を以下にまとめる.
 
 ```shell
->>> PATTERN_FOR_MAIN = r'\|(.+?) = (.+)'
->>> PATTERN_FOR_EMPHASIS = r'\'{2,5}'
->>> PATTERN_FOR_BRACES = r'.*\{\{.+\|(.+)\|(.+)\}\}'
->>> PATTERN_FOR_SINGLE_BLOCKS = r'.*\[\[(.+)\]\].*'
->>> PATTERN_FOR_DOUBLE_BLOCKS = r'\[\[(.+?)\]\].*\[\[(.+?)\]\]'
->>> PATTERN_FOR_REF = r'(.+?)<ref.+>$'
->>> PATTERN_FOR_BR = r'(.+?)<br.+'
->>> PATTERN_FOR_MEDIA_FILES = r'(ファイル|File):(.+?)\|.+'
+>>> PATTERN_FOR_MAIN = r"\|(.+?) = (.+)"
+>>> PATTERN_FOR_EMPHASIS = r"\'{2,5}"
+>>> PATTERN_FOR_BRACES = r".*\{\{.+\|(.+)\|(.+)\}\}"
+>>> PATTERN_FOR_SINGLE_BLOCKS = r".*\[\[(.+)\]\].*"
+>>> PATTERN_FOR_DOUBLE_BLOCKS = r"\[\[(.+?)\]\].*\[\[(.+?)\]\]"
+>>> PATTERN_FOR_REF = r"(.+?)<ref.+>$"
+>>> PATTERN_FOR_BR = r"(.+?)<br.+"
+>>> PATTERN_FOR_MEDIA_FILES = r"(ファイル|File):(.+?)\|.+"
 >>> basic_info = {}
 >>> start = splitted_text_uk.index('{{基礎情報 国') + 1
 >>> end = splitted_text_uk.index('}}') - 2
