@@ -143,6 +143,73 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 ## 28. MediaWiki マークアップの除去
 [27](https://stmsy.github.io/nlp-100-exercises-chapter-03/#28-mediawiki%E3%83%9E%E3%83%BC%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%E3%81%AE%E9%99%A4%E5%8E%BB)の処理に加えて，テンプレートの値から MediaWiki マークアップを可能な限り除去し，国の基本情報を整形せよ．
 
+設問25-28の処理を以下にまとめる.
+
+```shell
+>>> PATTERN_FOR_MAIN = r'\|(.+?) = (.+)'
+>>> PATTERN_FOR_EMPHASIS = r'\'{2,5}'
+>>> PATTERN_FOR_BRACES = r'.*\{\{.+\|(.+)\|(.+)\}\}'
+>>> PATTERN_FOR_SINGLE_BLOCKS = r'.*\[\[(.+)\]\].*'
+>>> PATTERN_FOR_DOUBLE_BLOCKS = r'\[\[(.+?)\]\].*\[\[(.+?)\]\]'
+>>> PATTERN_FOR_REF = r'(.+?)<ref.+>$'
+>>> PATTERN_FOR_BR = r'(.+?)<br.+'
+>>> PATTERN_FOR_MEDIA_FILES = r'(ファイル|File):(.+?)\|.+'
+>>> basic_info = {}
+>>> start = splitted_text_uk.index('{{基礎情報 国') + 1
+>>> end = splitted_text_uk.index('}}') - 2
+>>> for line in splitted_text_uk[start:end+1]:
+...     line = re.sub(PATTERN_FOR_EMPHASIS, '',  line)
+...     if line[0] == '|':
+...         if line[1:5] != '公式国名':
+...             m = re.search(PATTERN_FOR_MAIN, line)
+...             key, value = m.group(1), m.group(2)
+...             if 'ref' in value:
+...                 m = re.search(PATTERN_FOR_REF, value)
+...                 value = m.group(1)
+...             if 'br' in value:
+...                 m = re.search(PATTERN_FOR_BR, value)
+...                 value = m.group(1)
+...             if '[[' in value:
+...                 if key not in ('確立形態1', '確立年月日1', 'ccTLD'):
+...                     m = re.search(PATTERN_FOR_SINGLE_BLOCKS, value)
+...                     value = m.group(1)
+...                     if '|' in value:
+...                         if value[:5] == 'ファイル:':
+...                             m = re.search(PATTERN_FOR_MEDIA_FILES, value)
+...                             value = m.group(2)
+...                         else:
+...                             value = list(value.split('|'))
+...                 else:
+...                     m = re.search(PATTERN_FOR_DOUBLE_BLOCKS, value)
+...                     value = list(m.groups())
+...             basic_info[key] = value
+...         else:
+...             m = re.search(PATTERN_FOR_BRACES, line)
+...             key, value = m.group(1), m.group(2)
+...             basic_info['公式国名'] = {key: value}
+...     elif line[:3] == '*{{':
+...         # Capture the country name in other languages
+...         m = re.search(PATTERN_FOR_BRACES, line)
+...         key, value = m.group(1), m.group(2)
+...         if key != 'sco':
+...             basic_info['公式国名'].update({key: value})
+...         else:
+...             basic_info['公式国名'].update({key: [value]})
+...     elif line[:3] == '**{':
+...         # Capture another two country names in Scottish
+...         for substr in line.split('、'):
+...             m = re.search(PATTERN_FOR_BRACES, substr)
+...             key, value = m.group(1), m.group(2)
+...             basic_info['公式国名'][key].append(value)
+>>> pprint(basic_info)
+{'GDP/人': '36,727',
+ 'GDP値': '2兆3162億',
+ 'GDP値MER': '2兆4337億',
+ 'GDP値元': '1兆5478億',
+ 'GDP統計年': '2012',
+... 
+```
+
 ## 29. 国旗画像の URL を取得する
 テンプレートの内容を利用し，国旗画像の URL を取得せよ．（ヒント: [MediaWiki API](http://www.mediawiki.org/wiki/API:Main_page/ja) の [imageinfo](http://www.mediawiki.org/wiki/API:Properties/ja#imageinfo_.2F_ii) を呼び出して，ファイル参照を URL に変換すればよい）
 
