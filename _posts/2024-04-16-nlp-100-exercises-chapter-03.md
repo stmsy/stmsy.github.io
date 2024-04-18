@@ -224,6 +224,7 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 >>> page_info = list(response.json()['query']['pages'].values())[0]
 >>> url = page_info['imageinfo'][0]['url']
 >>> pprint(url)
+'https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg'
 ```
 
 # References
