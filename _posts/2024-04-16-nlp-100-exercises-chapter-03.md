@@ -29,12 +29,12 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 >>> response = requests.get(GZIPPED_JSON_FILE_URL)
 >>> buffered = BytesIO(response.content)
 >>> with GzipFile(fileobj=buffered) as gf:
->>>     articles = list(map(lambda x: json.loads(x.decode('utf-8')), gf.readlines()))
+...     articles = list(map(lambda x: json.loads(x.decode('utf-8')), gf.readlines()))
 >>> wikipedia = {}
 >>> for article in articles:
->>>     title = article['title']
->>>     text = article['text']
->>>     wikipedia[title] = text
+...     title = article['title']
+...     text = article['text']
+...     wikipedia[title] = text
 >>> pprint(wikipedia[UK])
 {'text': '{{redirect|UK}}\n'
          '{{基礎情報 国\n'
@@ -84,10 +84,10 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 >>> PATTERN_FOR_CATEGORY = r'\[\[Category:(.*?)[\|\]].*?'
 >>> category_names = []
 >>> for category_row in category_rows:
->>>     m = re.search(PATTERN_FOR_CATEGORY, category_row)
->>>     if m:
->>>         category_name = m.group(1)
->>>         category_names.append(category_name)
+...     m = re.search(PATTERN_FOR_CATEGORY, category_row)
+...     if m:
+...         category_name = m.group(1)
+...         category_names.append(category_name)
 >>> pprint(category_names)
 ['イギリス', '英連邦王国', 'G8加盟国', '欧州連合加盟国', '海洋国家', '君主国', '島国', '1801年に設立された州・地域']
 ```
@@ -98,11 +98,11 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 ```shell
 >>> PATTERN_FOR_SECTIONS = r'(={2,})\s?(.*?)\s?={2,}'
 >>> for line in splitted_text_uk:
->>>     m = re.search(PATTERN_FOR_SECTIONS, line)
->>>     if m:
->>>         section_level = len(m.group(1)) - 1
->>>         section_name = m.group(2)
->>>         print(section_name, section_level, sep='\t')
+...     m = re.search(PATTERN_FOR_SECTIONS, line)
+...     if m:
+...         section_level = len(m.group(1)) - 1
+...         section_name = m.group(2)
+...         print(section_name, section_level, sep='\t')
 国名	1
 歴史	1
 地理	1
@@ -118,10 +118,10 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 >>> PATTERN_FOR_MEDIA_FILES = r'.*(ファイル|File):(.*?)(\|.*?)'
 >>> media_files = []
 >>> for line in splitted_text_uk:
->>>     m = re.search(PATTERN_FOR_MEDIA_FILES, line)
->>>     if m:
->>>         media_file = m.group(2)
->>>         media_files.append(media_file)
+...     m = re.search(PATTERN_FOR_MEDIA_FILES, line)
+...     if m:
+...         media_file = m.group(2)
+...         media_files.append(media_file)
 >>> pprint(media_files)
 ['Royal Coat of Arms of the United Kingdom.svg',
  'Battle of Waterloo 1815.PNG',
