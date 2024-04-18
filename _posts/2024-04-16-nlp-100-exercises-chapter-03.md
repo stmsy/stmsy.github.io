@@ -174,7 +174,7 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 ...                     m = re.search(PATTERN_FOR_SINGLE_BLOCKS, value)
 ...                     value = m.group(1)
 ...                     if '|' in value:
-...                         if value[:5] == 'ファイル:':
+...                         if value[:5] in ('ファイル:', 'File:'):
 ...                             m = re.search(PATTERN_FOR_MEDIA_FILES, value)
 ...                             value = m.group(2)
 ...                         else:
