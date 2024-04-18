@@ -211,6 +211,21 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 ## 29. 国旗画像の URL を取得する
 テンプレートの内容を利用し，国旗画像の URL を取得せよ．（ヒント: [MediaWiki API](http://www.mediawiki.org/wiki/API:Main_page/ja) の [imageinfo](http://www.mediawiki.org/wiki/API:Properties/ja#imageinfo_.2F_ii) を呼び出して，ファイル参照を URL に変換すればよい）
 
+```shell
+>>> MEDIAWIKI_API_ENDPOINT = 'https://en.wikipedia.org/w/api.php'
+>>> payload = {
+...     "action": "query",
+...     "format": "json",
+...     "prop": "imageinfo",
+...     "titles": f"File:{basic_info['国旗画像']}",
+...     "iiprop": "url"
+... }
+>>> response = requests.get(url=MEDIAWIKI_API_ENDPOINT, params=payload)
+>>> page_info = list(response.json()['query']['pages'].values())[0]
+>>> url = page_info['imageinfo'][0]['url']
+>>> pprint(url)
+```
+
 # References
 1. Okazaki, N. (2015). *言語処理100本ノック 2015* [Natural Language Processing 100 Exercises 2015]. Retrieved from http://www.cl.ecei.tohoku.ac.jp/nlp100/
 2. Okazaki, N. (2020). *言語処理100本ノック 2020* [Natural Language Processing 100 Exercises 2020]. Retrieved from https://nlp100.github.io/ja/
