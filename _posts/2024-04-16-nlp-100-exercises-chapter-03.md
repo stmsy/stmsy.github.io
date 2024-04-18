@@ -155,8 +155,8 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 >>> PATTERN_FOR_BR = r"(.+?)<br.+"
 >>> PATTERN_FOR_MEDIA_FILES = r"(ファイル|File):(.+?)\|.+"
 >>> basic_info = {}
->>> start = splitted_text_uk.index('{' + '{基礎情報 国') + 1  # Avoid Liquid syntax error when generating HTML files from markdown for this blod article
->>> end = splitted_text_uk.index('}' + '}') - 2  # Avoid Liquid syntax error when generating HTML files from markdown for this blod article
+>>> start = splitted_text_uk.index('{' + '{基礎情報 国') + 1  # Avoid Liquid syntax error when generating HTML files from markdown for this blog article
+>>> end = splitted_text_uk.index('}' + '}') - 2  # Avoid Liquid syntax error when generating HTML files from markdown for this blog article
 >>> for line in splitted_text_uk[start:end+1]:
 ...     line = re.sub(PATTERN_FOR_EMPHASIS, '',  line)
 ...     if line[0] == '|':
@@ -187,7 +187,7 @@ Wikipedia 記事の JSON ファイルを読み込み，「イギリス」に関�
 ...             m = re.search(PATTERN_FOR_BRACES, line)
 ...             key, value = m.group(1), m.group(2)
 ...             basic_info['公式国名'] = {key: value}
-...     elif line[:3] == '*{' + '{':  # Avoid Liquid syntax error when generating HTML files from Markdown for this blod article
+...     elif line[:3] == '*{' + '{':  # Avoid Liquid syntax error when generating HTML files from Markdown for this blog article
 ...         m = re.search(PATTERN_FOR_BRACES, line)
 ...         key, value = m.group(1), m.group(2)
 ...         if key != 'sco':
