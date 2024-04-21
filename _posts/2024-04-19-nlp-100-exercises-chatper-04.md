@@ -9,7 +9,7 @@ classes: wide
 
 夏目漱石の小説『吾輩は猫である』の文章（[`neko.txt`](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)）を MeCab を使って形態素解析し, その結果を neko.txt.mecab というファイルに保存せよ. このファイルを用いて, 以下の問に対応するプログラムを実装せよ.
 
-なお，問題[37](#37), [38](#38), [39](#39)は [matplotlib](http://matplotlib.org/) もしくは [Gnuplot](http://www.gnuplot.info/) を用いるとよい.
+なお，問題[37](https://stmsy.github.io/nlp-100-exercises-chatper-04/#37-%E9%A0%BB%E5%BA%A6%E4%B8%8A%E4%BD%8D10%E8%AA%9E), [38](https://stmsy.github.io/nlp-100-exercises-chatper-04/#38-%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A0), [39](https://stmsy.github.io/nlp-100-exercises-chatper-04/#39-zipf-%E3%81%AE%E6%B3%95%E5%89%87)は [matplotlib](http://matplotlib.org/) もしくは [Gnuplot](http://www.gnuplot.info/) を用いるとよい.
 
 ## 30. 形態素解析結果の読み込み
 
