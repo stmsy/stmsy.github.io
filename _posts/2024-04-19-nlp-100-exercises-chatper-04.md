@@ -11,9 +11,25 @@ classes: wide
 
 なお，問題[37](https://stmsy.github.io/nlp-100-exercises-chatper-04/#37-%E9%A0%BB%E5%BA%A6%E4%B8%8A%E4%BD%8D10%E8%AA%9E), [38](https://stmsy.github.io/nlp-100-exercises-chatper-04/#38-%E3%83%92%E3%82%B9%E3%83%88%E3%82%B0%E3%83%A9%E3%83%A0), [39](https://stmsy.github.io/nlp-100-exercises-chatper-04/#39-zipf-%E3%81%AE%E6%B3%95%E5%89%87)は [matplotlib](http://matplotlib.org/) もしくは [Gnuplot](http://www.gnuplot.info/) を用いるとよい.
 
+```shell
+>>> from pathlib import Path
+>>> import MeCab
+>>> import requests
+>>> NEKO_TEXT = 'neko.txt'
+>>> NEKO_TEXT_URL = f'http://www.cl.ecei.tohoku.ac.jp/nlp100/data/{NEKO_TEXT}'
+>>> NEKO_TEXT_MECAB_FILEPATH = Path(f'./{NEKO_TEXT}.mecab')
+>>> response = requests.get(NEKO_TEXT_URL)
+>>> lines = (response.content.decode('utf-8')
+...                          .split())[1:]  # Ignore the beginning of document
+>>> m = MeCab.Tagger()
+>>> pos_tagged_lines = list(map(m.parse, lines))
+>>> with NEKO_TEXT_MECAB_FILAPTH.open('w') as f:
+...     f.writelines(pos_tagged_lines)
+```
+
 ## 30. 形態素解析結果の読み込み
 
-形態素解析結果（neko.txt.mecab）を読み込むプログラムを実装せよ. ただし, 各形態素は表層形（`surface`）, 基本形（`base`）, 品詞（`pos`）, 品詞細分類1（`pos1`）をキーとするマッピング型に格納し, 1文を形態素（マッピング型）のリストとして表現せよ. 第4章の残りの問題では, ここで作ったプログラムを活用せよ.
+形態素解析結果（`neko.txt.mecab`）を読み込むプログラムを実装せよ. ただし, 各形態素は表層形（`surface`）, 基本形（`base`）, 品詞（`pos`）, 品詞細分類1（`pos1`）をキーとするマッピング型に格納し, 1文を形態素（マッピング型）のリストとして表現せよ. 第4章の残りの問題では, ここで作ったプログラムを活用せよ.
 
 ## 31. 動詞
 
