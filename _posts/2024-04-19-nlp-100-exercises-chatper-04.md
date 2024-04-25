@@ -71,17 +71,82 @@ classes: wide
 
 動詞の表層形をすべて抽出せよ.
 
+```shell
+>>> from itertools import chain
+>>> pos_tagged_tokens = list(chain.from_iterable(pos_tagged_sentences))
+>>> verb_surfaces = [
+...     pos_tagged_token['surface'] for pos_tagged_token in pos_tagged_tokens if pos_tagged_token['pos'] == '動詞'
+... ]
+>>> pprint(verb_surfaces)
+['生れ',
+ 'つか',
+ 'し',
+ '泣い',
+ 'し',
+...
+```
+
 ## 32. 動詞の原形
 
 動詞の原形をすべて抽出せよ.
+
+```shell
+>>> verb_bases = [
+...    pos_tagged_token['base'] for pos_tagged_token in pos_tagged_tokens if pos_tagged_token['pos'] == '動詞'
+... ]
+>>> pprint(verb_bases)
+['生れる',
+ 'つく',
+ 'する',
+ '泣く',
+ 'する',
+...
+```
 
 ## 33. サ変名詞
 
 サ変接続の名詞をすべて抽出せよ.
 
+```shell
+>>> nouns = []
+... for i, pos_tagged_token in enumerate(pos_tagged_tokens[:-1]):
+...     # Check whether or not pos_tagged_token is an s-irregular verb
+...     if pos_tagged_token['pos'] == '動詞' and pos_tagged_token['base'] == 'する':
+...         # Check whether the following token is a noun
+...         if pos_tagged_tokens[i+1]['pos'] == '名詞':
+...             nouns.append(pos_tagged_tokens[i+1]['surface'])
+>>> pprint(nouns)
+['時',
+ 'とき',
+ '筋',
+ 'の',
+ '柔',
+...
+```
+
 ## 34. 「AのB」
 
 2つの名詞が「の」で連結されている名詞句を抽出せよ.
+
+```shell
+>>> noun_phrases = []
+>>> for i, pos_tagged_token in enumerate(pos_tagged_tokens[:-2]):
+...     # Check whether or not pos_tagged_token is a noun
+...     if pos_tagged_token['pos'] == '名詞':
+...         # Check whether or not the following token is 'の'
+...         if pos_tagged_tokens[i+1]['surface'] == 'の':
+...             # Check whether or not the next following token is a noun
+...             if pos_tagged_tokens[i+2]['pos'] == '名詞':
+...                 noun_phrase = pos_tagged_token['surface'] + 'の' + pos_tagged_tokens[i+2]['surface']
+...                 noun_phrases.append(noun_phrase)
+>>> pprint(noun_phrases)
+['彼の掌',
+ '掌の上',
+ '書生の顔',
+ 'はずの顔',
+ '顔の真中',
+ ...
+```
 
 ## 35. 名詞の連接
 
