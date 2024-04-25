@@ -31,6 +31,42 @@ classes: wide
 
 形態素解析結果（`neko.txt.mecab`）を読み込むプログラムを実装せよ. ただし, 各形態素は表層形（`surface`）, 基本形（`base`）, 品詞（`pos`）, 品詞細分類1（`pos1`）をキーとするマッピング型に格納し, 1文を形態素（マッピング型）のリストとして表現せよ. 第4章の残りの問題では, ここで作ったプログラムを活用せよ.
 
+```shell
+>>> from pprint import pprint
+>>> import re
+>>> POS_TAG = ','.join(['(.+)'] * 9)
+>>> MECAB_POS_PATTERN = re.compile(f'(.+)\t{POS_TAG}')
+>>> with POS_TAGGED_NEKO_TEXT_FILAPTH.open() as f:
+...     text = f.read()
+...     sentences = text.split('EOS\n')
+>>> pos_tagged_sentences = []
+>>> for sentence in sentences[:-1]:
+...     lines = sentence.split('\n')[:-1]
+...     pos_tagged_tokens = []
+...     for line in lines:
+...         matched = MECAB_POS_PATTERN.match(line)
+...         if matched:
+...             pos_tagged_token = {
+...                 'surface': matched.group(1),
+...                 'base': matched.group(8),
+...                 'pos': matched.group(2),
+...                 'pos1': matched.group(3)
+...             }
+...             pos_tagged_tokens.append(pos_tagged_token)
+...     pos_tagged_sentences.append(pos_tagged_tokens)
+>>> pprint(pos_tagged_sentences)
+[[{'base': '吾輩', 'pos': '名詞', 'pos1': '代名詞', 'surface': '吾輩'},
+  {'base': 'は', 'pos': '助詞', 'pos1': '係助詞', 'surface': 'は'},
+  {'base': '猫', 'pos': '名詞', 'pos1': '一般', 'surface': '猫'},
+  {'base': 'だ', 'pos': '助動詞', 'pos1': '*', 'surface': 'で'},
+  {'base': 'ある', 'pos': '助動詞', 'pos1': '*', 'surface': 'ある'},
+  {'base': '。', 'pos': '記号', 'pos1': '句点', 'surface': '。'}],
+ [{'base': '名前', 'pos': '名詞', 'pos1': '一般', 'surface': '名前'},
+  {'base': 'は', 'pos': '助詞', 'pos1': '係助詞', 'surface': 'は'},
+  {'base': 'まだ', 'pos': '副詞', 'pos1': '助詞類接続', 'surface': 'まだ'},
+...
+```
+
 ## 31. 動詞
 
 動詞の表層形をすべて抽出せよ.
