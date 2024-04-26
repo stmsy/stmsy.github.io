@@ -110,7 +110,7 @@ classes: wide
 ```shell
 >>> nouns = []
 ... for i, pos_tagged_token in enumerate(pos_tagged_tokens[:-1]):
-...     # Check whether or not pos_tagged_token is an s-irregular verb 'する' or its conjugate
+...     # Check whether or not pos_tagged_token is the s-irregular verb 'する' or its conjugate
 ...     if pos_tagged_token['pos'] == '動詞' and pos_tagged_token['base'] == 'する':
 ...         # Check whether the following token is a noun
 ...         if pos_tagged_tokens[i+1]['pos'] == '名詞':
@@ -133,7 +133,7 @@ classes: wide
 >>> for i, pos_tagged_token in enumerate(pos_tagged_tokens[:-2]):
 ...     # Check whether or not pos_tagged_token is a noun
 ...     if pos_tagged_token['pos'] == '名詞':
-...         # Check whether or not the following token is a particle 'の'
+...         # Check whether or not the following token is the particle 'の'
 ...         if pos_tagged_tokens[i+1]['surface'] == 'の':
 ...             # Check whether or not the next following token is a noun
 ...             if pos_tagged_tokens[i+2]['pos'] == '名詞':
