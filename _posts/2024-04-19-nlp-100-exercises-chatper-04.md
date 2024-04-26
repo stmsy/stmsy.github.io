@@ -152,9 +152,54 @@ classes: wide
 
 名詞の連接（連続して出現する名詞）を最長一致で抽出せよ.
 
+```shell
+>>> compound_nouns = []
+>>> for i in range(len(pos_tagged_tokens)):
+...     pos_tagged_token = pos_tagged_tokens[i]
+...     # Check whether or not pos_tagged_token is a noun
+...     if pos_tagged_token['pos'] == '名詞':
+...         i += 1
+...         compound_noun = pos_tagged_token['surface']
+...         # Append the following nouns if applicable
+...         while pos_tagged_tokens[i]['pos'] == '名詞':
+...             compound_noun += pos_tagged_tokens[i]['surface']
+...             i += 1
+...         compound_nouns.append(compound_noun)
+>>> pprint(compound_nouns)
+['吾輩',
+ '猫',
+ '名前',
+ 'どこ',
+ '見当',
+...
+```
+
 ## 36. 単語の出現頻度
 
 文章中に出現する単語とその出現頻度を求め, 出現頻度の高い順に並べよ.
+
+```shell
+>>> from collections import Counter
+>>> import pandas as pd
+>>> surface_freqs = Counter([
+...     pos_tagged_token['surface'] for pos_tagged_token in pos_tagged_tokens
+])
+>>> df_surface_freqs = pd.DataFrame.from_dict(surface_freqs,
+...                                           columns=['freq'],
+...                                           orient='index')
+>>> df_surface_freqs.sort_values(by='freq',
+...                              ascending=False,
+...                              inplace=True)
+>>> pprint(df_surface_freqs)
+         freq
+surface
+の        9193
+。        7486
+て        6868
+、        6773
+は        6421
+...
+```
 
 ## 37. 頻度上位10語
 
