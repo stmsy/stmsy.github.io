@@ -187,6 +187,7 @@ classes: wide
 >>> df_surface_freqs = pd.DataFrame.from_dict(surface_freqs,
 ...                                           columns=['freq'],
 ...                                           orient='index')
+>>> df_surface_freqs.index.name = 'surface'
 >>> df_surface_freqs.sort_values(by='freq',
 ...                              ascending=False,
 ...                              inplace=True)
