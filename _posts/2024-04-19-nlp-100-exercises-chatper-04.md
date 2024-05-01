@@ -216,6 +216,8 @@ df_surface_freqs[:offset].plot(kind='bar',
                                ax=ax,
                                title=f'語（表層形）の出現頻度トップ{offset}',
                                grid=True,
+                               xlabel='語',
+                               ylabel='出現頻度',
                                rot=0)
 fig.show()
 ```
@@ -244,6 +246,8 @@ df_surface_freqs_agged.plot(x='freq',
                             title='語（表層形）の出現頻度と種類数のヒストグラム',
                             grid=True,
                             xlim=(0.5, offset),
+                            xlabel='出現頻度',
+                            ylabel='種類数',
                             rot=0)
 fig.show()
 ```
@@ -261,6 +265,8 @@ df_surface_freqs.plot(kind='line',
                       logx=True,
                       logy=True,
                       xticks=None,
+                      xlabel='出現頻度順位（対数）',
+                      ylabel='出現頻度(対数)',
                       rot=0)
 fig.show()
 ```
