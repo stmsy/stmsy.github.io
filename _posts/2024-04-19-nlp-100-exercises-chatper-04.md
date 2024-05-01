@@ -206,11 +206,66 @@ surface
 
 出現頻度が高い10語とその出現頻度をグラフ（例えば棒グラフなど）で表示せよ.
 
+```python
+import japanize_matplotlib
+import matplotlib.pyplot as plt
+
+offset = 10
+fig, ax = plt.subplots(figsize=(20, 10))
+df_surface_freqs[:offset].plot(kind='bar',
+                               ax=ax,
+                               title=f'語（表層形）の出現頻度トップ{offset}',
+                               grid=True,
+                               rot=0)
+fig.show()
+```
+
+<a href="/assets/images/cs/nlp/2024-04-19-nlp-100-exercises-chatper-04-37.jpg"><img src="/assets/images/cs/nlp/2024-04-19-nlp-100-exercises-chatper-04-37.jpg"></a>
+
 ## 38. ヒストグラム
 
 単語の出現頻度のヒストグラム（横軸に出現頻度, 縦軸に出現頻度をとる単語の種類数を棒グラフで表したもの）を描け.
 
+```python
+import numpy as np
+
+fig, ax = plt.subplots(figsize=(20, 10))
+df_surface_freqs_agged = (df_surface_freqs['freq'].value_counts()
+                                                  .reset_index()
+                                                  .sort_values(by='freq'))
+# Plot the first smallest 50 bins
+offset = 50
+bins = np.arange(offset) - 0.5
+df_surface_freqs_agged.plot(x='freq',
+                            y='count',
+                            kind='hist',
+                            bins=bins,
+                            ax=ax,
+                            title='語（表層形）の出現頻度と種類数のヒストグラム',
+                            grid=True,
+                            xlim=(0.5, offset),
+                            rot=0)
+fig.show()
+```
+
+<a href="/assets/images/cs/nlp/2024-04-19-nlp-100-exercises-chatper-04-38.jpg"><img src="/assets/images/cs/nlp/2024-04-19-nlp-100-exercises-chatper-04-38.jpg"></a>
+
 ## 39. Zipf の法則
+
+```python
+fig, ax = plt.subplots(figsize=(20, 10))
+df_surface_freqs.plot(kind='line',
+                      ax=ax,
+                      title='語（表層形）の出現頻度順位と出現頻度の対数プロット',
+                      grid=True,
+                      logx=True,
+                      logy=True,
+                      xticks=None,
+                      rot=0)
+fig.show()
+```
+
+<a href="/assets/images/cs/nlp/2024-04-19-nlp-100-exercises-chatper-04-39.jpg"><img src="/assets/images/cs/nlp/2024-04-19-nlp-100-exercises-chatper-04-39.jpg"></a>
 
 単語の出現頻度順位を横軸, その出現頻度を縦軸として, 両対数グラフをプロットせよ.
 
