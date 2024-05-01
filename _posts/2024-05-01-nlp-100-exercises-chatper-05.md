@@ -5,6 +5,7 @@ tags:
   - Japanese
   - Python 3.12
 classes: wide
+use_math: true
 ---
 
 夏目漱石の小説『吾輩は猫である』の文章（[`neko.txt`](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)）を CaboCha を使って係り受け解析し, その結果を neko.txt.cabocha というファイルに保存せよ. このファイルを用いて, 以下の問に対応するプログラムを実装せよ.
