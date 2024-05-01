@@ -256,6 +256,9 @@ fig.show()
 
 ## 39. Zipf の法則
 
+単語の出現頻度順位を横軸, その出現頻度を縦軸として, 両対数グラフをプロットせよ.
+
+
 ```python
 fig, ax = plt.subplots(figsize=(20, 10))
 df_surface_freqs.plot(kind='line',
@@ -272,8 +275,6 @@ fig.show()
 ```
 
 <a href="/assets/images/cs/nlp/2024-04-19-nlp-100-exercises-chatper-04-39.jpg"><img src="/assets/images/cs/nlp/2024-04-19-nlp-100-exercises-chatper-04-39.jpg"></a>
-
-単語の出現頻度順位を横軸, その出現頻度を縦軸として, 両対数グラフをプロットせよ.
 
 # References
 1. Okazaki, N. (2015). *言語処理100本ノック 2015* [Natural Language Processing 100 Exercises 2015]. Retrieved from http://www.cl.ecei.tohoku.ac.jp/nlp100/
