@@ -110,17 +110,17 @@ classes: wide
 ```shell
 >>> nouns = []
 ... for i, pos_tagged_token in enumerate(pos_tagged_tokens[:-1]):
-...     # Check whether or not pos_tagged_token is the s-irregular verb 'する' or its conjugate
-...     if pos_tagged_token['pos'] == '動詞' and pos_tagged_token['base'] == 'する':
-...         # Check whether the following token is a noun
-...         if pos_tagged_tokens[i+1]['pos'] == '名詞':
-...             nouns.append(pos_tagged_tokens[i+1]['surface'])
+...     # Check whether the following token is a noun
+...     if pos_tagged_token['pos'] == '名詞':
+...         # Check whether or not pos_tagged_token is the s-irregular verb 'する' or its conjugate
+...         if pos_tagged_tokens[i+1]['pos'] == '動詞' and pos_tagged_tokens[i+1]['base'] == 'する':
+...             nouns.append(pos_tagged_token['surface'])
 >>> pprint(nouns)
-['時',
- 'とき',
- '筋',
- 'の',
- '柔',
+['記憶',
+ '装飾',
+ '突起',
+ '咽',
+ '運転',
 ...
 ```
 
