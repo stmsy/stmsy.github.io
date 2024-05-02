@@ -10,6 +10,26 @@ use_math: true
 
 夏目漱石の小説『吾輩は猫である』の文章（[`neko.txt`](http://www.cl.ecei.tohoku.ac.jp/nlp100/data/neko.txt)）を CaboCha を使って係り受け解析し, その結果を neko.txt.cabocha というファイルに保存せよ. このファイルを用いて, 以下の問に対応するプログラムを実装せよ.
 
+```shell
+>>> from pathlib import Path
+>>> import CaboCha
+>>> import requests
+>>> NEKO_TEXT = 'neko.txt'
+>>> NEKO_TEXT_URL = f'http://www.cl.ecei.tohoku.ac.jp/nlp100/data/{NEKO_TEXT}'
+>>> SYN_PARSED_NEKO_TEXT_FILAPTH = Path(f'./{NEKO_TEXT}.cabocha')
+>>> response = requests.get(NEKO_TEXT_URL)
+>>> lines = (response.content.decode('utf-8')
+>>>                          .split())[1:]  # Ignore the beginning of document
+>>> syn_parsed_lines = []
+>>> c = CaboCha.Parser()
+>>> for line in lines:
+...     tree = c.parse(line)
+...     syn_parsed_line = tree.toString(CaboCha.FORMAT_LATTICE)
+...     syn_parsed_lines.append(syn_parsed_line)
+>>> with SYN_PARSED_NEKO_TEXT_FILAPTH.open('w') as f:
+...     f.writelines(syn_parsed_lines)
+```
+
 ## 40. 係り受け解析結果の読み込み（形態素）
 
 形態素を表すクラス `Morph` を実装せよ. このクラスは表層形（`surface`）, 基本形（`base`）, 品詞（`pos`）, 品詞細分類1（`pos1`）をメンバ変数に持つこととする. さらに, CaboCha の解析結果（neko.txt.cabocha）を読み込み 各文を `Morph` オブジェクトのリストとして表現し, 3文目の形態素列を表示せよ.
