@@ -83,12 +83,10 @@ use_math: true
 >>>                           pos=m.group(2),
 >>>                           pos1=m.group(3))
 >>>             pos_tagged_tokens[index].append(morph)
->>>
 >>>     for syn_parsed_chunk in syn_parsed_chunks:
 >>>         index = syn_parsed_chunk.index
 >>>         syn_parsed_chunk.morphs = pos_tagged_tokens[index]
 >>>         syn_parsed_chunk.srcs = dep_structure[index]
->>>
 >>>     syn_parsed_sentences[i] = syn_parsed_chunks
 >>> syn_parsed_chunks = syn_parsed_sentences[2]
 >>> for syn_parsed_chunk in syn_parsed_chunks:
