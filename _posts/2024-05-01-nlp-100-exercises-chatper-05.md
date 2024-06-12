@@ -38,6 +38,88 @@ use_math: true
 
 [40](https://stmsy.github.io/nlp-100-exercises-chatper-05/#40-%E4%BF%82%E3%82%8A%E5%8F%97%E3%81%91%E8%A7%A3%E6%9E%90%E7%B5%90%E6%9E%9C%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF%E5%BD%A2%E6%85%8B%E7%B4%A0)に加えて, 文節を表すクラス `Chunk` を実装せよ. このクラスは形態素（`Morph` オブジェクト）のリスト（`morphs`）, 係り先文節インデックス番号（`dst`）, 係り元文節インデックス番号のリスト（`srcs`）をメンバ変数に持つこととする. さらに, 入力テキストの CaboCha の解析結果を読み込み, 1文を `Chunk` オブジェクトのリストとして表現し, 8文目の文節の文字列と係り先を表示せよ. 第5章の残りの問題では, ここで作ったプログラムを活用せよ.
 
+設問40, 41の処理を以下にまとめる.
+
+```
+>>> from collections import defaultdict
+>>> from pprint import pprint
+>>> import re
+>>> from pydantic import BaseModel, NonNegativeInt
+>>> class Morph(BaseModel):
+>>>     surface: str
+>>>     base: str
+>>>     pos: str
+>>>     pos1: str
+>>> class Chunk(BaseModel):
+>>>     index: NonNegativeInt | None = None
+>>>     morphs: list[Morph] | None = None
+>>>     dst: NonNegativeInt | None = None
+>>>     srcs: list[NonNegativeInt] | None = None
+>>> POS_TAG = ','.join(['(.+)'] * 9)
+>>> MECAB_PATTERN = re.compile(f'(.+)\t{POS_TAG}')
+>>> CHUNK_TAG = r'\* (\d+) (-*\d+)(\D) (\d+)/(\d+) '
+>>> CABOCHA_PATTERN = re.compile(CHUNK_TAG)
+>>> with SYN_PARSED_NEKO_TEXT_FILAPTH.open() as f:
+>>>     text = f.read()
+>>>     sentences = text.split('EOS\n')
+>>> syn_parsed_sentences = {}
+>>> for i, sentence in enumerate(sentences[:-1]):
+>>>     lines = sentence.split('\n')[:-1]
+>>>     syn_parsed_chunks = []
+>>>     pos_tagged_tokens = defaultdict(list)
+>>>     dep_structure = defaultdict(list)
+>>>     for line in lines:
+>>>         c = CABOCHA_PATTERN.match(line)
+>>>         m = MECAB_PATTERN.match(line)
+>>>         if c:
+>>>             index, dst = int(c.group(1)), int(c.group(2))
+>>>             dst = dst if dst >= 0 else None
+>>>             dep_structure[dst].append(index)
+>>>             chunk = Chunk(index=index, dst=dst)
+>>>             syn_parsed_chunks.append(chunk)
+>>>         if m:
+>>>             morph = Morph(surface=m.group(1),
+>>>                           base=m.group(8),
+>>>                           pos=m.group(2),
+>>>                           pos1=m.group(3))
+>>>             pos_tagged_tokens[index].append(morph)
+>>>
+>>>     for syn_parsed_chunk in syn_parsed_chunks:
+>>>         index = syn_parsed_chunk.index
+>>>         syn_parsed_chunk.morphs = pos_tagged_tokens[index]
+>>>         syn_parsed_chunk.srcs = dep_structure[index]
+>>>
+>>>     syn_parsed_sentences[i] = syn_parsed_chunks
+>>> syn_parsed_chunks = syn_parsed_sentences[2]
+>>> for syn_parsed_chunk in syn_parsed_chunks:
+>>>     pprint(syn_parsed_chunk.morphs)
+[Morph(surface='どこ', base='どこ', pos='名詞', pos1='代名詞'),
+ Morph(surface='で', base='で', pos='助詞', pos1='格助詞')]
+[Morph(surface='生れ', base='生れる', pos='動詞', pos1='自立'),
+ Morph(surface='た', base='た', pos='助動詞', pos1='*'),
+ Morph(surface='か', base='か', pos='助詞', pos1='副助詞／並立助詞／終助詞')]
+[Morph(surface='とんと', base='とんと', pos='副詞', pos1='一般')]
+[Morph(surface='見当', base='見当', pos='名詞', pos1='サ変接続'),
+ Morph(surface='が', base='が', pos='助詞', pos1='格助詞')]
+[Morph(surface='つか', base='つく', pos='動詞', pos1='自立'),
+ Morph(surface='ぬ', base='ぬ', pos='助動詞', pos1='*'),
+ Morph(surface='。', base='。', pos='記号', pos1='句点')]
+>>> syn_parsed_chunks = syn_parsed_sentences[7]
+>>> for syn_parsed_chunk in syn_parsed_chunks:
+>>>     surfaces = list(map(lambda x: x.surface, syn_parsed_chunk.morphs))
+>>>     pprint(f"文節: {''.join(surfaces)}, 係り先: {syn_parsed_chunk.dst}")
+'文節: しかし, 係り先: 9'
+'文節: その, 係り先: 2'
+'文節: 当時は, 係り先: 5'
+'文節: 何という, 係り先: 4'
+'文節: 考も, 係り先: 5'
+'文節: なかったから, 係り先: 9'
+'文節: 別段, 係り先: 7'
+'文節: 恐し, 係り先: 9'
+'文節: いとも, 係り先: 9'
+'文節: 思わなかった。, 係り先: None'
+```
+
 ## 42. 係り元と係り先の文節の表示
 
 係り元の文節と係り先の文節のテキストをタブ区切り形式ですべて抽出せよ. ただし, 句読点などの記号は出力しないようにせよ.
